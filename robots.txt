@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ultimequiz.netlify.app/sitemap.xml
