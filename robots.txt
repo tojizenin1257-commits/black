@@ -1,1 +1,3 @@
-Sitemap: https://ultimequiz.netlify.app/sitemap.xml
+User-agent: *
+Allow: /
+Sitemap: https://black-quiz-anime.onrender.com/sitemap.xml
