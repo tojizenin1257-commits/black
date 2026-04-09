@@ -7,6 +7,11 @@
     <meta name="keywords" content="anime quiz, quiz anime, test anime, naruto, one piece, dragon ball">
     <meta name="author" content="Ultimate Anime Quiz">
     <title>Ultimate Anime Quiz - Testez vos connaissances sur les animes</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5242542688677015"
+     crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -82,6 +87,28 @@
             position: relative;
             overflow: hidden;
             margin-bottom: 30px;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 20px auto;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 10px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ad-label {
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 5px;
+            text-align: center;
         }
 
         .anime-decoration {
@@ -603,6 +630,20 @@
                 <p>Chaque question a un temps limité de 10 secondes</p>
             </div>
 
+            <!-- Bannière publicitaire haut de page -->
+            <div class="ad-container">
+                <div class="ad-label">Publicité</div>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5242542688677015"
+                     data-ad-slot="YOUR_AD_SLOT_1"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
             <div class="quiz-area">
                 <div id="start-container" class="question-container active">
                     <div class="question-text" style="text-align: center; padding: 20px 0;">
@@ -672,6 +713,20 @@
                 <button id="next-btn" class="control-btn">
                     Question Suivante <i class="fas fa-arrow-right"></i>
                 </button>
+            </div>
+
+            <!-- Bannière publicitaire bas de page -->
+            <div class="ad-container">
+                <div class="ad-label">Publicité</div>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5242542688677015"
+                     data-ad-slot="YOUR_AD_SLOT_2"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>
@@ -774,6 +829,9 @@
         
         <h3>8. Modification de la politique</h3>
         <p>Nous nous réservons le droit de modifier cette politique à tout moment. Les modifications seront publiées sur cette page.</p>
+        
+        <h3>9. Publicités et services tiers</h3>
+        <p>Ce site utilise Google AdSense. Les annonces diffusées sont susceptibles d'utiliser des cookies de ciblage. En continuant à naviguer sur ce site, vous acceptez l'utilisation de ces cookies.</p>
     </div>
 
     <!-- Footer -->
@@ -850,7 +908,7 @@
             document.getElementById('cookieConsent').style.display = 'none';
         });
         
-        // Quiz logic (version simplifiée - reprendre la même logique que l'original)
+        // Quiz logic
         const allQuizQuestions = [
             { question: "Dans Naruto, quel est le nom du démon renard à neuf queues scellé dans Naruto ?", answers: ["Isobu", "Kurama", "Shukaku", "Matatabi"], correct: 1 },
             { question: "Quel est le nom du célèbre pirate à la paille dans One Piece ?", answers: ["Monkey D. Luffy", "Roronoa Zoro", "Sanji", "Tony Tony Chopper"], correct: 0 },
@@ -865,7 +923,6 @@
             { question: "Dans l'anime Hunter x Hunter, quel est le type de Nen de Gon ?", answers: ["Renforcement", "Transmutation", "Spécialisation", "Manipulation"], correct: 0 }
         ];
         
-        // Version simplifiée du quiz - garder la même logique fonctionnelle
         let quizQuestions = [], currentQuestion = 0, score = 0, timeLeft = 10, timerInterval, buzzed = false, gameStarted = false, totalQuestions = 10;
         
         const startContainer = document.getElementById('start-container');
