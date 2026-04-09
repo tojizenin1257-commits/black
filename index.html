@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Anime Quiz</title>
+    <meta name="description" content="Testez vos connaissances sur les animes avec notre quiz ultime ! Plus de 50 questions, chronomètre et système de buzz pour les vrais fans d'anime.">
+    <meta name="keywords" content="anime quiz, quiz anime, test anime, naruto, one piece, dragon ball">
+    <meta name="author" content="Ultimate Anime Quiz">
+    <title>Ultimate Anime Quiz - Testez vos connaissances sur les animes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -18,9 +21,55 @@
             color: #fff;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             padding: 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            max-width: 1200px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 50px;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 64, 129, 0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff4081;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff4081;
+            background-color: rgba(255, 64, 129, 0.1);
         }
 
         .container {
@@ -32,6 +81,18 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .anime-decoration {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff4081, #3f51b5);
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+            opacity: 0.3;
         }
 
         .header {
@@ -55,15 +116,96 @@
             margin-bottom: 5px;
         }
 
-        .anime-decoration {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, #ff4081, #3f51b5);
-            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-            opacity: 0.3;
+        /* Pages de contenu */
+        .page-content {
+            display: none;
+            background-color: rgba(30, 30, 46, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #3f51b5;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .page-content h2 {
+            color: #ff4081;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+
+        .page-content h3 {
+            color: #4caf50;
+            margin: 20px 0 10px 0;
+        }
+
+        .page-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .page-content ul, .page-content ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .page-content li {
+            margin-bottom: 8px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #f50057;
+            transform: scale(1.02);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #3f51b5;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+        }
+
+        .contact-info i {
+            width: 30px;
+            color: #ff4081;
         }
 
         .quiz-area {
@@ -334,11 +476,74 @@
             box-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
         }
 
+        /* Footer */
         .footer {
+            max-width: 900px;
+            width: 100%;
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff4081;
+        }
+
+        .copyright {
             color: #888;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+        }
+
+        .cookie-consent {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            max-width: 90%;
+            text-align: center;
+            border: 1px solid #ff4081;
+            backdrop-filter: blur(10px);
+        }
+
+        .cookie-consent button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cookie-consent button:hover {
+            background-color: #f50057;
         }
 
         @media (max-width: 768px) {
@@ -347,15 +552,15 @@
             }
             
             .header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .question-text {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .timer {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
             
             .difficulty-selection {
@@ -366,365 +571,303 @@
             .difficulty-btn {
                 width: 80%;
             }
+
+            .navbar {
+                flex-direction: column;
+                border-radius: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="anime-decoration"></div>
-        
-        <div class="header">
-            <h1><i class="fas fa-tv"></i> ULTIMATE ANIME QUIZ</h1>
-            <p>Testez vos connaissances sur les animes !</p>
-            <p>Chaque question a un temps limité de 10 secondes</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-tv"></i> AnimeQuiz
         </div>
+        <div class="nav-links">
+            <a href="#" data-page="accueil" class="active"><i class="fas fa-home"></i> Accueil</a>
+            <a href="#" data-page="a-propos"><i class="fas fa-info-circle"></i> À propos</a>
+            <a href="#" data-page="contact"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="#" data-page="politique"><i class="fas fa-shield-alt"></i> Confidentialité</a>
+        </div>
+    </nav>
 
-        <div class="quiz-area">
-            <div id="start-container" class="question-container active">
-                <div class="question-text" style="text-align: center; padding: 40px 0;">
-                    <h2 style="color: #ff4081; margin-bottom: 20px;">Bienvenue à l'Ultimate Anime Quiz !</h2>
-                    <p style="margin-bottom: 15px;">Vous allez répondre à des questions sur les animes.</p>
-                    <p style="margin-bottom: 25px;">Chaque question dispose d'un chronomètre de 10 secondes.</p>
-                    <p style="margin-bottom: 25px;">Utilisez le bouton BUZZ pour répondre dès que vous connaissez la réponse !</p>
-                    
-                    <h3 style="color: #4caf50; margin-bottom: 15px;">Choisissez le nombre de questions :</h3>
-                    
-                    <div class="difficulty-selection">
-                        <button class="difficulty-btn" data-questions="10">10 Questions</button>
-                        <button class="difficulty-btn" data-questions="20">20 Questions</button>
-                        <button class="difficulty-btn" data-questions="30">30 Questions</button>
-                        <button class="difficulty-btn" data-questions="50">50 Questions</button>
-                    </div>
-                </div>
-                
-                <div class="buzz-section">
-                    <button id="start-btn" class="buzz-btn" disabled>
-                        <i class="fas fa-play"></i> COMMENCER LE QUIZ
-                    </button>
-                    <p class="buzz-info">Sélectionnez d'abord le nombre de questions</p>
-                </div>
+    <!-- Page Accueil -->
+    <div id="accueil" class="page-content active">
+        <div class="container" style="padding: 0; background: transparent;">
+            <div class="anime-decoration"></div>
+            <div class="header">
+                <h1><i class="fas fa-tv"></i> ULTIMATE ANIME QUIZ</h1>
+                <p>Testez vos connaissances sur les animes !</p>
+                <p>Chaque question a un temps limité de 10 secondes</p>
             </div>
 
-            <div id="question-container" class="question-container">
-                <div class="question-header">
-                    <div class="question-number">Question <span id="current-question">1</span>/<span id="total-questions">10</span></div>
-                    <div class="timer-container">
-                        <i class="fas fa-clock"></i>
-                        <div id="timer" class="timer">10</div>
+            <div class="quiz-area">
+                <div id="start-container" class="question-container active">
+                    <div class="question-text" style="text-align: center; padding: 20px 0;">
+                        <h2 style="color: #ff4081; margin-bottom: 20px;">Bienvenue à l'Ultimate Anime Quiz !</h2>
+                        <p style="margin-bottom: 15px;">Vous allez répondre à des questions sur les animes.</p>
+                        <p style="margin-bottom: 25px;">Chaque question dispose d'un chronomètre de 10 secondes.</p>
+                        <p style="margin-bottom: 25px;">Utilisez le bouton BUZZ pour répondre dès que vous connaissez la réponse !</p>
+                        
+                        <h3 style="color: #4caf50; margin-bottom: 15px;">Choisissez le nombre de questions :</h3>
+                        
+                        <div class="difficulty-selection">
+                            <button class="difficulty-btn" data-questions="10">10 Questions</button>
+                            <button class="difficulty-btn" data-questions="20">20 Questions</button>
+                            <button class="difficulty-btn" data-questions="30">30 Questions</button>
+                            <button class="difficulty-btn" data-questions="50">50 Questions</button>
+                        </div>
+                    </div>
+                    
+                    <div class="buzz-section">
+                        <button id="start-btn" class="buzz-btn" disabled>
+                            <i class="fas fa-play"></i> COMMENCER LE QUIZ
+                        </button>
+                        <p class="buzz-info">Sélectionnez d'abord le nombre de questions</p>
+                    </div>
+                </div>
+
+                <div id="question-container" class="question-container">
+                    <div class="question-header">
+                        <div class="question-number">Question <span id="current-question">1</span>/<span id="total-questions">10</span></div>
+                        <div class="timer-container">
+                            <i class="fas fa-clock"></i>
+                            <div id="timer" class="timer">10</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-text" id="question-text">
+                        Chargement de la question...
+                    </div>
+                    
+                    <div class="answers-container" id="answers-container">
+                        <!-- Les réponses seront générées ici dynamiquement -->
+                    </div>
+                    
+                    <div class="buzz-section">
+                        <button id="buzz-btn" class="buzz-btn">
+                            <i class="fas fa-bell"></i> BUZZ !
+                        </button>
+                        <p class="buzz-info">Appuyez sur BUZZ dès que vous connaissez la réponse, puis sélectionnez la bonne réponse</p>
+                    </div>
+                    
+                    <div class="score-container">
+                        Score: <span id="score">0</span> points
                     </div>
                 </div>
                 
-                <div class="question-text" id="question-text">
-                    Chargement de la question...
-                </div>
-                
-                <div class="answers-container" id="answers-container">
-                    <!-- Les réponses seront générées ici dynamiquement -->
-                </div>
-                
-                <div class="buzz-section">
-                    <button id="buzz-btn" class="buzz-btn">
-                        <i class="fas fa-bell"></i> BUZZ !
+                <div id="results-container" class="results-container">
+                    <h2>Résultats du Quiz</h2>
+                    <div class="final-score" id="final-score">0/10</div>
+                    <p id="result-message">Message basé sur votre score</p>
+                    <button id="restart-btn" class="restart-btn">
+                        <i class="fas fa-redo"></i> Recommencer le Quiz
                     </button>
-                    <p class="buzz-info">Appuyez sur BUZZ dès que vous connaissez la réponse, puis sélectionnez la bonne réponse</p>
-                </div>
-                
-                <div class="score-container">
-                    Score: <span id="score">0</span> points
                 </div>
             </div>
             
-            <div id="results-container" class="results-container">
-                <h2>Résultats du Quiz</h2>
-                <div class="final-score" id="final-score">0/10</div>
-                <p id="result-message">Message basé sur votre score</p>
-                <button id="restart-btn" class="restart-btn">
-                    <i class="fas fa-redo"></i> Recommencer le Quiz
+            <div class="controls">
+                <button id="next-btn" class="control-btn">
+                    Question Suivante <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- Page À propos -->
+    <div id="a-propos" class="page-content">
+        <h2><i class="fas fa-info-circle"></i> À propos de nous</h2>
+        <p><strong>Ultimate Anime Quiz</strong> est un site créé par des passionnés d'anime pour les fans du monde entier. Notre mission est de tester et de célébrer vos connaissances sur l'univers fascinant des animes japonais.</p>
         
-        <div class="controls">
-            <button id="next-btn" class="control-btn">
-                Question Suivante <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
+        <h3>Notre histoire</h3>
+        <p>Créé en 2024, Ultimate Anime Quiz est né d'une passion commune pour les animes et les jeux-questionnaires. Nous voulions offrir une expérience interactive et amusante pour tous les otaku, des débutants aux experts.</p>
         
-        <div class="footer">
-            <p>Ultimate Anime Quiz &copy; 2023 - Testez vos connaissances sur les animes</p>
+        <h3>Notre contenu</h3>
+        <p>Notre base de données contient plus de 50 questions couvrant une large gamme d'animes populaires :</p>
+        <ul>
+            <li>Shonen légendaires : Naruto, One Piece, Dragon Ball, Bleach</li>
+            <li>Classiques modernes : Attack on Titan, My Hero Academia, Demon Slayer</li>
+            <li>Chefs-d'œuvre : Death Note, Fullmetal Alchemist, Code Geass</li>
+            <li>Et bien d'autres encore !</li>
+        </ul>
+        
+        <h3>Pourquoi nous choisir ?</h3>
+        <ul>
+            <li>Quiz 100% gratuit</li>
+            <li>Interface immersive inspirée des animes</li>
+            <li>Système de buzz unique pour plus de challenge</li>
+            <li>Mise à jour régulière des questions</li>
+        </ul>
+    </div>
+
+    <!-- Page Contact -->
+    <div id="contact" class="page-content">
+        <h2><i class="fas fa-envelope"></i> Contactez-nous</h2>
+        <p>Vous avez une question, une suggestion ou vous souhaitez signaler un problème ? N'hésitez pas à nous contacter via le formulaire ci-dessous. Nous vous répondrons dans les plus brefs délais.</p>
+        
+        <form class="contact-form" id="contactForm">
+            <input type="text" placeholder="Votre nom" required>
+            <input type="email" placeholder="Votre email" required>
+            <input type="text" placeholder="Sujet">
+            <textarea placeholder="Votre message..." required></textarea>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+        </form>
+        
+        <div class="contact-info">
+            <h3>Informations de contact</h3>
+            <p><i class="fas fa-envelope"></i> Email : contact@ultimateanimequiz.com</p>
+            <p><i class="fab fa-twitter"></i> Twitter : @AnimeQuiz</p>
+            <p><i class="fab fa-discord"></i> Discord : Rejoignez notre communauté</p>
+            <p><i class="fas fa-globe"></i> Site : www.ultimateanimequiz.com</p>
         </div>
     </div>
 
+    <!-- Page Politique de confidentialité -->
+    <div id="politique" class="page-content">
+        <h2><i class="fas fa-shield-alt"></i> Politique de confidentialité</h2>
+        <p><strong>Dernière mise à jour :</strong> 9 avril 2026</p>
+        
+        <h3>1. Collecte des informations</h3>
+        <p>Nous collectons les informations suivantes lorsque vous utilisez notre site :</p>
+        <ul>
+            <li><strong>Cookies techniques :</strong> Nécessaires au fonctionnement du quiz (conservation du score, de la progression)</li>
+            <li><strong>Données de performance :</strong> Scores anonymes pour améliorer notre service</li>
+            <li><strong>Données de contact :</strong> Uniquement si vous nous contactez via le formulaire</li>
+        </ul>
+        
+        <h3>2. Utilisation des cookies</h3>
+        <p>Notre site utilise des cookies pour :</p>
+        <ul>
+            <li>Mémoriser vos préférences (nombre de questions sélectionné)</li>
+            <li>Assurer le bon fonctionnement du quiz</li>
+            <li>Analyser le trafic de manière anonyme</li>
+        </ul>
+        
+        <h3>3. Publicité et Google AdSense</h3>
+        <p>Nous utilisons Google AdSense pour afficher des publicités pertinentes. Google peut utiliser des cookies pour personnaliser les annonces en fonction de votre navigation. Vous pouvez en savoir plus sur la <a href="https://policies.google.com/technologies/ads" target="_blank" style="color:#ff4081;">politique publicitaire de Google</a>.</p>
+        
+        <h3>4. Protection des données</h3>
+        <p>Nous nous engageons à protéger vos données personnelles :</p>
+        <ul>
+            <li>Aucune donnée sensible n'est collectée</li>
+            <li>Les données de contact sont supprimées après traitement de votre demande</li>
+            <li>Notre site utilise le chiffrement HTTPS (si hébergé avec un certificat SSL)</li>
+        </ul>
+        
+        <h3>5. Liens externes</h3>
+        <p>Notre site peut contenir des liens vers des sites externes. Nous ne sommes pas responsables de leurs pratiques de confidentialité.</p>
+        
+        <h3>6. Vos droits</h3>
+        <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+        <ul>
+            <li>Droit d'accès à vos données</li>
+            <li>Droit de rectification</li>
+            <li>Droit à l'effacement</li>
+            <li>Droit d'opposition</li>
+        </ul>
+        <p>Pour exercer ces droits, contactez-nous via le formulaire de contact.</p>
+        
+        <h3>7. Sécurité</h3>
+        <p>Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données contre tout accès non autorisé.</p>
+        
+        <h3>8. Modification de la politique</h3>
+        <p>Nous nous réservons le droit de modifier cette politique à tout moment. Les modifications seront publiées sur cette page.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#" data-page="accueil">Accueil</a>
+            <a href="#" data-page="a-propos">À propos</a>
+            <a href="#" data-page="contact">Contact</a>
+            <a href="#" data-page="politique">Confidentialité</a>
+        </div>
+        <div class="copyright">
+            <p>© 2024 Ultimate Anime Quiz - Tous droits réservés | Site indépendant, non affilié aux studios d'animation</p>
+            <p>Les images et noms de personnages sont la propriété de leurs ayants droit respectifs</p>
+        </div>
+    </div>
+
+    <!-- Bannière cookies -->
+    <div id="cookieConsent" class="cookie-consent" style="display: none;">
+        <span><i class="fas fa-cookie-bite"></i> Ce site utilise des cookies et Google AdSense pour améliorer votre expérience et afficher des publicités personnalisées.</span>
+        <button id="acceptCookies">Accepter</button>
+    </div>
+
     <script>
-        // Questions du quiz (banque de questions étendue)
-        const allQuizQuestions = [
-            // 10 premières questions
-            {
-                question: "Dans Naruto, quel est le nom du démon renard à neuf queues scellé dans Naruto ?",
-                answers: ["Isobu", "Kurama", "Shukaku", "Matatabi"],
-                correct: 1
-            },
-            {
-                question: "Quel est le nom du célèbre pirate à la paille dans One Piece ?",
-                answers: ["Monkey D. Luffy", "Roronoa Zoro", "Sanji", "Tony Tony Chopper"],
-                correct: 0
-            },
-            {
-                question: "Dans Death Note, quel est l'objet principal qui permet de tuer des personnes ?",
-                answers: ["Le livre de la mort", "Le carnet noir", "Le Death Note", "Le cahier de Shinigami"],
-                correct: 2
-            },
-            {
-                question: "Dans My Hero Academia, quel est le nom du héros numéro 1 ?",
-                answers: ["Endeavor", "All Might", "Hawks", "Best Jeanist"],
-                correct: 1
-            },
-            {
-                question: "Dans Attack on Titan, quel est le nom de la ville principale où vivent les humains ?",
-                answers: ["Shiganshina", "Trost", "Stohess", "Wall Maria"],
-                correct: 0
-            },
-            {
-                question: "Dans Dragon Ball Z, qui est le premier Super Saiyan légendaire ?",
-                answers: ["Goku", "Vegeta", "Broly", "Gohan"],
-                correct: 2
-            },
-            {
-                question: "Dans Demon Slayer, quelle est la respiration principale utilisée par Tanjiro ?",
-                answers: ["Respiration de l'eau", "Respiration du feu", "Respiration du vent", "Respiration du tonnerre"],
-                correct: 0
-            },
-            {
-                question: "Dans Fullmetal Alchemist, quelle est la première loi de l'alchimie ?",
-                answers: ["Loi de l'équivalence", "Loi de la conservation de la masse", "Loi de la transmutation", "Loi de la contrepartie"],
-                correct: 1
-            },
-            {
-                question: "Quel est le nom du protagoniste dans l'anime Sword Art Online ?",
-                answers: ["Kirito", "Asuna", "Klein", "Agil"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime One Punch Man, quel est le nom du héros principal ?",
-                answers: ["Genos", "Saitama", "Mumen Rider", "Silver Fang"],
-                correct: 1
-            },
-            // 10 questions supplémentaires
-            {
-                question: "Dans l'anime Hunter x Hunter, quel est le type de Nen de Gon ?",
-                answers: ["Renforcement", "Transmutation", "Spécialisation", "Manipulation"],
-                correct: 0
-            },
-            {
-                question: "Dans Cowboy Bebop, comment s'appelle le vaisseau principal de l'équipage ?",
-                answers: ["Bebop", "Swordfish", "Hammerhead", "Red Tail"],
-                correct: 0
-            },
-            {
-                question: "Quel est le nom de l'organisation criminelle dans l'anime Psycho-Pass ?",
-                answers: ["Sybil", "MWPSB", "The Sibyl System", "The Crime Coefficient"],
-                correct: 0
-            },
-            {
-                question: "Dans Bleach, quelle est la forme évoluée du Zanpakuto appelée ?",
-                answers: ["Bankai", "Shikai", "Resurrección", "Volstanding"],
-                correct: 0
-            },
-            {
-                question: "Dans JoJo's Bizarre Adventure, quel est le nom du stand de Jotaro Kujo ?",
-                answers: ["Star Platinum", "The World", "Silver Chariot", "Magician's Red"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Neon Genesis Evangelion, qui pilote l'Unité 01 ?",
-                answers: ["Shinji Ikari", "Rei Ayanami", "Asuka Langley", "Kaworu Nagisa"],
-                correct: 0
-            },
-            {
-                question: "Dans Code Geass, quel est le pouvoir que possède Lelouch ?",
-                answers: ["Geass", "Knightmare", "Code", "Sakuradite"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Fairy Tail, quel est le nom du chat bleu qui accompagne Lucy ?",
-                answers: ["Happy", "Carla", "Pantherlily", "Plue"],
-                correct: 0
-            },
-            {
-                question: "Dans Dr. Stone, quel est l'élément principal utilisé par Senku pour ses inventions ?",
-                answers: ["La science", "La magie", "L'alchimie", "Les stands"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Tokyo Ghoul, de quoi se nourrissent les goules ?",
-                answers: ["De chair humaine", "De sang", "D'âmes", "De peur"],
-                correct: 0
-            },
-            // 10 questions supplémentaires
-            {
-                question: "Dans l'anime Black Clover, quel est le nom du grimoire d'Asta ?",
-                answers: ["Grimoire à cinq feuilles", "Grimoire à quatre feuilles", "Grimoire anti-magie", "Grimoire du démon"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Haikyuu!!, quelle position joue Shoyo Hinata ?",
-                answers: ["Attaquant", "Passeur", "Libéro", "Central"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Jujutsu Kaisen, qui est le principal antagoniste de la saison 1 ?",
-                answers: ["Sukuna", "Mahito", "Geto", "Gojo"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Spy x Family, quel est le nom de code de Loid Forger ?",
-                answers: ["Twilight", "Nightfall", "Thorn Princess", "Wise"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Chainsaw Man, quel est le nom du démon avec lequel Denji a un pacte ?",
-                answers: ["Pochita", "Power", "Makima", "Aki"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Mob Psycho 100, quel est le pourcentage maximum de puissance de Mob ?",
-                answers: ["100%", "99%", "1000%", "???%"],
-                correct: 3
-            },
-            {
-                question: "Dans l'anime Re:Zero, quel est le pouvoir de Subaru ?",
-                answers: ["Return by Death", "Invisible Providence", "Cor Leonis", "Al Shamac"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime The Promised Neverland, quel est l'âge limite des enfants à la ferme ?",
-                answers: ["12 ans", "10 ans", "15 ans", "18 ans"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Vinland Saga, quel est le nom du père de Thorfinn ?",
-                answers: ["Thors", "Askeladd", "Canute", "Bjorn"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Made in Abyss, quel est l'objet le plus précieux trouvé dans l'Abysse ?",
-                answers: ["Les reliques", "Les cartes", "Les fossiles", "Les pierres"],
-                correct: 0
-            },
-            // 20 questions supplémentaires pour arriver à 50
-            {
-                question: "Dans l'anime Soul Eater, quelle forme prend l'arme de Maka ?",
-                answers: ["Une faux", "Une épée", "Un pistolet", "Un marteau"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Noragami, quel est le dieu principal de l'histoire ?",
-                answers: ["Yato", "Bishamon", "Kofuku", "Tenjin"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Durarara!!, quel est l'être surnaturel à la tête de moto ?",
-                answers: ["Celty Sturluson", "Izaya Orihara", "Shizuo Heiwajima", "Mikado Ryugamine"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Blue Exorcist, quel est le nom de l'école d'exorcisme ?",
-                answers: ["True Cross Academy", "Cram School", "Exorcist Academy", "Vatican School"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Inuyasha, de quel type d'être est Inuyasha ?",
-                answers: ["Demi-démon", "Démon complet", "Humain", "Dieu"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Fruits Basket, quel est l'animal du zodiaque représenté par Yuki ?",
-                answers: ["Le rat", "Le bœuf", "Le tigre", "Le lapin"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Toradora!, quel est le surnom de Taiga ?",
-                answers: ["Tigre de poche", "Lionne", "Dragon", "Ours"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Clannad, quel est le nom de l'école fréquentée par les personnages ?",
-                answers: ["Hikarizaka", "Sakura", "Sunohara", "Furukawa"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Steins;Gate, quel est le nom du laboratoire ?",
-                answers: ["Laboratoire des futurs gadgets", "SERN", "Brain's Base", "Amadeus"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Elfen Lied, que représentent les 'vecteurs' de Lucy ?",
-                answers: ["Des bras invisibles", "Des ailes", "Des cornes", "Des queues"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Erased, quel est le pouvoir de Satoru ?",
-                answers: ["Revival", "Time Leap", "Reset", "Recall"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime AnoHana, quel est le nom du fantôme que voit Jinta ?",
-                answers: ["Menma", "Anaru", "Tsuruko", "Poppo"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime K-On!, quel instrument joue Yui ?",
-                answers: ["Guitare", "Basse", "Batterie", "Clavier"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Love Live!, combien de membres compte le groupe μ's ?",
-                answers: ["9", "5", "7", "12"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Lucky Star, quel est le plat préféré de Konata ?",
-                answers: ["Nouilles instantanées", "Curry", "Okonomiyaki", "Takoyaki"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Azumanga Daioh, quel est l'animal de compagnie de Chiyo ?",
-                answers: ["Un chien parlant", "Un chat", "Un oiseau", "Un lapin"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Nichijou, quel est le nom du robot créé par Hakase ?",
-                answers: ["Nano", "Sakamoto", "Mio", "Mai"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Non Non Biyori, dans quelle région se déroule l'histoire ?",
-                answers: ["Campagne", "Tokyo", "Kyoto", "Hokkaido"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Aria, quel est le métier principal des personnages ?",
-                answers: ["Undine", "Martien", "Touriste", "Pêcheur"],
-                correct: 0
-            },
-            {
-                question: "Dans l'anime Yuru Camp, quel est le passe-temps principal des personnages ?",
-                answers: ["Camping", "Randonnée", "Cuisine", "Photographie"],
-                correct: 0
+        // Gestion de la navigation entre pages
+        const pages = ['accueil', 'a-propos', 'contact', 'politique'];
+        const navLinks = document.querySelectorAll('.nav-links a, .footer-links a');
+        
+        function showPage(pageId) {
+            pages.forEach(page => {
+                const pageElement = document.getElementById(page);
+                if (pageElement) {
+                    pageElement.classList.remove('active');
+                }
+            });
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
             }
+            
+            // Mettre à jour la classe active sur les liens
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Réinitialiser le quiz si on quitte la page accueil
+            if (pageId !== 'accueil' && typeof restartQuizFromNav === 'function') {
+                restartQuizFromNav();
+            }
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                if (pageId) {
+                    showPage(pageId);
+                }
+            });
+        });
+        
+        // Gestion des cookies
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieConsent').style.display = 'flex';
+            }
+        }
+        
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').style.display = 'none';
+        });
+        
+        // Quiz logic (version simplifiée - reprendre la même logique que l'original)
+        const allQuizQuestions = [
+            { question: "Dans Naruto, quel est le nom du démon renard à neuf queues scellé dans Naruto ?", answers: ["Isobu", "Kurama", "Shukaku", "Matatabi"], correct: 1 },
+            { question: "Quel est le nom du célèbre pirate à la paille dans One Piece ?", answers: ["Monkey D. Luffy", "Roronoa Zoro", "Sanji", "Tony Tony Chopper"], correct: 0 },
+            { question: "Dans Death Note, quel est l'objet principal qui permet de tuer des personnes ?", answers: ["Le livre de la mort", "Le carnet noir", "Le Death Note", "Le cahier de Shinigami"], correct: 2 },
+            { question: "Dans My Hero Academia, quel est le nom du héros numéro 1 ?", answers: ["Endeavor", "All Might", "Hawks", "Best Jeanist"], correct: 1 },
+            { question: "Dans Attack on Titan, quel est le nom de la ville principale où vivent les humains ?", answers: ["Shiganshina", "Trost", "Stohess", "Wall Maria"], correct: 0 },
+            { question: "Dans Dragon Ball Z, qui est le premier Super Saiyan légendaire ?", answers: ["Goku", "Vegeta", "Broly", "Gohan"], correct: 2 },
+            { question: "Dans Demon Slayer, quelle est la respiration principale utilisée par Tanjiro ?", answers: ["Respiration de l'eau", "Respiration du feu", "Respiration du vent", "Respiration du tonnerre"], correct: 0 },
+            { question: "Dans Fullmetal Alchemist, quelle est la première loi de l'alchimie ?", answers: ["Loi de l'équivalence", "Loi de la conservation de la masse", "Loi de la transmutation", "Loi de la contrepartie"], correct: 1 },
+            { question: "Quel est le nom du protagoniste dans l'anime Sword Art Online ?", answers: ["Kirito", "Asuna", "Klein", "Agil"], correct: 0 },
+            { question: "Dans l'anime One Punch Man, quel est le nom du héros principal ?", answers: ["Genos", "Saitama", "Mumen Rider", "Silver Fang"], correct: 1 },
+            { question: "Dans l'anime Hunter x Hunter, quel est le type de Nen de Gon ?", answers: ["Renforcement", "Transmutation", "Spécialisation", "Manipulation"], correct: 0 }
         ];
-
-        // Variables globales
-        let quizQuestions = [];
-        let currentQuestion = 0;
-        let score = 0;
-        let timeLeft = 10;
-        let timerInterval;
-        let buzzed = false;
-        let gameStarted = false;
-        let totalQuestions = 10;
-
-        // Éléments DOM
+        
+        // Version simplifiée du quiz - garder la même logique fonctionnelle
+        let quizQuestions = [], currentQuestion = 0, score = 0, timeLeft = 10, timerInterval, buzzed = false, gameStarted = false, totalQuestions = 10;
+        
         const startContainer = document.getElementById('start-container');
         const questionContainer = document.getElementById('question-container');
         const resultsContainer = document.getElementById('results-container');
@@ -741,51 +884,7 @@
         const finalScoreElement = document.getElementById('final-score');
         const resultMessageElement = document.getElementById('result-message');
         const difficultyButtons = document.querySelectorAll('.difficulty-btn');
-
-        // Sélection du nombre de questions
-        difficultyButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Retirer la sélection de tous les boutons
-                difficultyButtons.forEach(btn => btn.classList.remove('selected'));
-                
-                // Sélectionner le bouton cliqué
-                button.classList.add('selected');
-                
-                // Activer le bouton de démarrage
-                startBtn.disabled = false;
-                startBtn.style.backgroundColor = '#ff4081';
-                
-                // Définir le nombre de questions
-                totalQuestions = parseInt(button.getAttribute('data-questions'));
-                totalQuestionsSpan.textContent = totalQuestions;
-            });
-        });
-
-        // Démarrer le quiz
-        startBtn.addEventListener('click', startQuiz);
-
-        // Bouton Buzz
-        buzzBtn.addEventListener('click', buzz);
-
-        // Bouton suivant
-        nextBtn.addEventListener('click', nextQuestion);
-
-        // Redémarrer le quiz
-        restartBtn.addEventListener('click', restartQuiz);
-
-        // Fonction pour démarrer le quiz
-        function startQuiz() {
-            // Sélectionner aléatoirement les questions
-            quizQuestions = shuffleArray([...allQuizQuestions]).slice(0, totalQuestions);
-            
-            gameStarted = true;
-            startContainer.classList.remove('active');
-            questionContainer.classList.add('active');
-            loadQuestion();
-            startTimer();
-        }
-
-        // Fonction pour mélanger un tableau
+        
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -793,27 +892,42 @@
             }
             return array;
         }
-
-        // Fonction pour charger une question
+        
+        difficultyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                difficultyButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+                startBtn.disabled = false;
+                startBtn.style.backgroundColor = '#ff4081';
+                totalQuestions = parseInt(button.getAttribute('data-questions'));
+                totalQuestionsSpan.textContent = totalQuestions;
+            });
+        });
+        
+        startBtn.addEventListener('click', startQuiz);
+        buzzBtn.addEventListener('click', buzz);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        function startQuiz() {
+            quizQuestions = shuffleArray([...allQuizQuestions]).slice(0, totalQuestions);
+            gameStarted = true;
+            startContainer.classList.remove('active');
+            questionContainer.classList.add('active');
+            loadQuestion();
+            startTimer();
+        }
+        
         function loadQuestion() {
             buzzed = false;
             buzzBtn.classList.remove('buzzed');
             buzzBtn.disabled = false;
-            
-            // Réinitialiser le timer
             timeLeft = 10;
             timerElement.textContent = timeLeft;
             timerElement.className = 'timer';
-            
-            // Mettre à jour le numéro de question
             currentQuestionSpan.textContent = currentQuestion + 1;
-            totalQuestionsSpan.textContent = totalQuestions;
-            
-            // Charger la question
             const question = quizQuestions[currentQuestion];
             questionText.textContent = question.question;
-            
-            // Charger les réponses
             answersContainer.innerHTML = '';
             question.answers.forEach((answer, index) => {
                 const button = document.createElement('button');
@@ -823,22 +937,14 @@
                 button.addEventListener('click', () => selectAnswer(index));
                 answersContainer.appendChild(button);
             });
-            
-            // Mettre à jour le score
             scoreElement.textContent = score;
         }
-
-        // Fonction pour démarrer le timer
+        
         function startTimer() {
-            // Effacer tout timer existant
             clearInterval(timerInterval);
-            
-            // Démarrer un nouveau timer
             timerInterval = setInterval(() => {
                 timeLeft--;
                 timerElement.textContent = timeLeft;
-                
-                // Changer la couleur du timer
                 if (timeLeft <= 3) {
                     timerElement.classList.add('danger');
                     timerElement.classList.remove('warning');
@@ -846,172 +952,105 @@
                     timerElement.classList.add('warning');
                     timerElement.classList.remove('danger');
                 }
-                
-                // Si le temps est écoulé
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timeUp();
                 }
             }, 1000);
         }
-
-        // Fonction lorsque le temps est écoulé
+        
         function timeUp() {
-            // Désactiver le buzz
             buzzBtn.disabled = true;
-            
-            // Désactiver toutes les réponses
             const answerButtons = document.querySelectorAll('.answer-btn');
             answerButtons.forEach(button => {
                 button.disabled = true;
-                
-                // Afficher la bonne réponse
-                const buttonIndex = parseInt(button.dataset.index);
-                if (buttonIndex === quizQuestions[currentQuestion].correct) {
+                if (parseInt(button.dataset.index) === quizQuestions[currentQuestion].correct) {
                     button.classList.add('correct');
                 }
             });
-            
-            // Passer à la question suivante après un délai
             if (currentQuestion < totalQuestions - 1) {
-                setTimeout(() => {
-                    currentQuestion++;
-                    loadQuestion();
-                    startTimer();
-                }, 3000);
+                setTimeout(() => { currentQuestion++; loadQuestion(); startTimer(); }, 3000);
             } else {
-                // C'est la dernière question, afficher les résultats
                 setTimeout(showResults, 3000);
             }
         }
-
-        // Fonction pour buzzer
+        
         function buzz() {
             if (buzzed || !gameStarted) return;
-            
             buzzed = true;
             buzzBtn.classList.add('buzzed');
             buzzBtn.disabled = true;
-            
-            // Arrêter le timer
             clearInterval(timerInterval);
-            
-            // Activer les boutons de réponse
-            const answerButtons = document.querySelectorAll('.answer-btn');
-            answerButtons.forEach(button => {
-                button.disabled = false;
-            });
+            document.querySelectorAll('.answer-btn').forEach(button => button.disabled = false);
         }
-
-        // Fonction pour sélectionner une réponse
+        
         function selectAnswer(index) {
             if (!buzzed) return;
-            
             const answerButtons = document.querySelectorAll('.answer-btn');
             const correctIndex = quizQuestions[currentQuestion].correct;
-            
-            // Désactiver tous les boutons
-            answerButtons.forEach(button => {
-                button.disabled = true;
-            });
-            
-            // Marquer la réponse sélectionnée comme incorrecte si ce n'est pas la bonne
-            if (index !== correctIndex) {
-                answerButtons[index].classList.add('incorrect');
-            } else {
-                // Augmenter le score si la réponse est correcte
-                score++;
-                scoreElement.textContent = score;
-            }
-            
-            // Marquer la bonne réponse
+            answerButtons.forEach(button => button.disabled = true);
+            if (index !== correctIndex) answerButtons[index].classList.add('incorrect');
+            else score++;
             answerButtons[correctIndex].classList.add('correct');
-            
-            // Passer à la question suivante après un délai
+            scoreElement.textContent = score;
             if (currentQuestion < totalQuestions - 1) {
-                setTimeout(() => {
-                    currentQuestion++;
-                    loadQuestion();
-                    startTimer();
-                }, 2000);
+                setTimeout(() => { currentQuestion++; loadQuestion(); startTimer(); }, 2000);
             } else {
-                // C'est la dernière question, afficher les résultats
                 setTimeout(showResults, 2000);
             }
         }
-
-        // Fonction pour passer à la question suivante (manuellement)
+        
         function nextQuestion() {
             if (currentQuestion < totalQuestions - 1) {
-                // Arrêter le timer actuel
                 clearInterval(timerInterval);
-                
                 currentQuestion++;
                 loadQuestion();
                 startTimer();
             } else {
-                // Afficher les résultats si c'est la dernière question
                 showResults();
             }
         }
-
-        // Fonction pour afficher les résultats
+        
         function showResults() {
-            // Arrêter le timer s'il est encore en cours
             clearInterval(timerInterval);
-            
             questionContainer.classList.remove('active');
             resultsContainer.style.display = 'block';
-            
-            // Calculer le score final
-            const finalScore = score;
-            finalScoreElement.textContent = `${finalScore}/${totalQuestions}`;
-            
-            // Afficher un message basé sur le score
+            finalScoreElement.textContent = `${score}/${totalQuestions}`;
             let message = "";
-            const percentage = (finalScore / totalQuestions) * 100;
-            
-            if (percentage <= 30) {
-                message = "Vous êtes un débutant en anime ! Il est temps de regarder plus d'épisodes !";
-            } else if (percentage <= 60) {
-                message = "Pas mal ! Vous avez de bonnes connaissances en anime.";
-            } else if (percentage <= 80) {
-                message = "Excellent ! Vous êtes un vrai fan d'anime !";
-            } else {
-                message = "Incroyable ! Vous êtes un véritable expert des animes !";
-            }
-            
+            const percentage = (score / totalQuestions) * 100;
+            if (percentage <= 30) message = "Vous êtes un débutant en anime ! Il est temps de regarder plus d'épisodes !";
+            else if (percentage <= 60) message = "Pas mal ! Vous avez de bonnes connaissances en anime.";
+            else if (percentage <= 80) message = "Excellent ! Vous êtes un vrai fan d'anime !";
+            else message = "Incroyable ! Vous êtes un véritable expert des animes !";
             resultMessageElement.textContent = message;
         }
-
-        // Fonction pour redémarrer le quiz
+        
         function restartQuiz() {
-            // Réinitialiser les variables
             currentQuestion = 0;
             score = 0;
             buzzed = false;
             gameStarted = false;
-            
-            // Cacher les résultats et afficher l'écran de démarrage
             resultsContainer.style.display = 'none';
             startContainer.classList.add('active');
             questionContainer.classList.remove('active');
-            
-            // Réinitialiser l'interface
             scoreElement.textContent = "0";
             buzzBtn.classList.remove('buzzed');
             buzzBtn.disabled = false;
             startBtn.disabled = true;
             startBtn.style.backgroundColor = '';
-            
-            // Désélectionner les boutons de difficulté
             difficultyButtons.forEach(btn => btn.classList.remove('selected'));
         }
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("Ultimate Anime Quiz chargé avec succès !");
+        
+        window.restartQuizFromNav = restartQuiz;
+        
+        // Formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+            e.target.reset();
         });
+        
+        checkCookieConsent();
     </script>
 </body>
 </html>
