@@ -1,1 +1,3 @@
-Sitemap: https://black-quiz-anime.onrender.com/sitemap.xml
+User-agent: *
+Allow: /
+Sitemap: https://black-yych.onrender.com/sitemap.xml
